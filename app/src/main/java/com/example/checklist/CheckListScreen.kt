@@ -17,9 +17,15 @@ fun CheckListScreen(
     checkListViewModel: CheckListViewModel = viewModel()
 ){
 
-    val list = remember { getChecklistTasks().toMutableStateList() }
-    CheckListTasks(list =list, onCloseTask = {task -> list.remove(task)})
-
+    CheckListTasks(
+        list = checkListViewModel.tasks,
+        onCheckedTask  = { task, checked ->
+            checkListViewModel.changeTaskChecked(task, checked)
+        },
+        onCloseTask = { task ->
+            checkListViewModel.remove(task)
+        }
+    )
 }
 
 private fun getChecklistTasks() = List(25){i -> CheckListTask(i, "Task # $i") }

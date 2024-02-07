@@ -10,6 +10,7 @@ import com.example.checklist.CheckListTaskItem
 @Composable
 fun CheckListTasks(
     list: List<CheckListTask>,
+    onCheckedTask: (CheckListTask, Boolean) -> Unit,
     onCloseTask: (CheckListTask) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -20,7 +21,8 @@ fun CheckListTasks(
             items = list,
             key = {task -> task.id} // in the the data class
         ){task->
-            CheckListTaskItem(taskName = task.label,
+            CheckListTaskItem(
+                taskName = task.label,
                 checked = task.checked,
                 onCheckedChange = { checked -> onCheckedTask(task, checked) },
                 onClose = { onCloseTask(task) }

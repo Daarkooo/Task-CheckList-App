@@ -13,6 +13,11 @@ class CheckListViewModel : ViewModel(){
         _tasks.remove(item)
     }
 
+    fun changeTaskChecked(item: CheckListTask, checked: Boolean) =
+        _tasks.find { it.id == item.id }?.let{ task ->
+            task.checked = checked
+        }
+
 }
 
 private fun getCheckListTasks() = List(32){ i -> CheckListTask(i, "Task # $i") }

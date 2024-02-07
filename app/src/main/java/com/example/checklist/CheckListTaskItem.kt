@@ -14,23 +14,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-@Composable
-fun CheckListTaskItem(taskName: String, onClose: () -> Unit, modifier: Modifier = Modifier) // stateful fun
-{
-    var checkedState by rememberSaveable { mutableStateOf(false) }
-    // --------------           Saveable when scorling a list and geting back the data is lost (UI)
-
-    CheckListTaskItem(
-        taskName = taskName,
-        checked = checkedState,
-        onCheckedChange = { newValue -> checkedState = newValue},
-        onClose = onClose,
-        modifier = modifier
-    )
-}
 
 @Composable
-fun CheckListTaskItem(  // stateless fun
+fun CheckListTaskItem(
     taskName: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
