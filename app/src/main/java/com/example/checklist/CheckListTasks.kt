@@ -16,8 +16,15 @@ fun CheckListTasks(
     LazyColumn(
         modifier = modifier
     ){
-        items(items = list){task->
-            CheckListTaskItem(taskName = task.label)
+        items(
+            items = list,
+            key = {task -> task.id} // in the the data class
+        ){task->
+            CheckListTaskItem(taskName = task.label,
+                checked = task.checked,
+                onCheckedChange = { checked -> onCheckedTask(task, checked) },
+                onClose = { onCloseTask(task) }
+                )
         }
     }
 }

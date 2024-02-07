@@ -5,20 +5,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Preview(
     showSystemUi = true,
     showBackground = true
 )
 @Composable
-fun CheckListScreen(modifier: Modifier = Modifier){
+fun CheckListScreen(
+    modifier: Modifier = Modifier,
+    checkListViewModel: CheckListViewModel = viewModel()
+){
 
-//    val list = remember {        ---------------------- other version --------------
-//        mutableStateListOf<CheckListTask>().apply {
-//            addAll(getChecklistTasks())
-//        }
-//
-//    }
     val list = remember { getChecklistTasks().toMutableStateList() }
     CheckListTasks(list =list, onCloseTask = {task -> list.remove(task)})
 
